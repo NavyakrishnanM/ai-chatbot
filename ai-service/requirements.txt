@@ -1,0 +1,6 @@
+fastapi          # The web framework — like Spring Boot but for Python
+uvicorn          # The server that runs FastAPI (like Tomcat for Spring)
+python-dotenv    # Reads .env files so we never hardcode secrets
+google-genai     # Official Google Gemini SDK (new, actively maintained)
+httpx            # Async HTTP client (we'll use this to call Spring Boot later)
+pydantic         # Data validation — FastAPI uses this for request/response models

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!--
+        CONCEPT — Spring Boot Parent POM:
+        Instead of manually specifying every library version, we inherit
+        from spring-boot-starter-parent. It pre-configures compatible
+        versions for hundreds of libraries. Think of it as a "managed
+        dependency bundle" — you just say what you want, the parent
+        decides which version plays nicely with Spring Boot 3.4.
+    -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.4.5</version>
+        <relativePath/>
+    </parent>
+
+    <!-- Project coordinates — like a unique address for this artifact -->
+    <groupId>com.devassist</groupId>
+    <artifactId>devassist-backend</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>DevAssist Backend</name>
+    <description>Spring Boot backend for the DevAssist AI chatbot</description>
+
+    <properties>
+        <!-- Java 21 — uses Records, sealed classes, virtual threads -->
+        <java.version>21</java.version>
+    </properties>
+
+    <dependencies>
+
+        <!--
+            spring-boot-starter-web:
+            Includes Spring MVC, embedded Tomcat, Jackson (JSON serialization).
+            This one dependency gives you a full HTTP server.
+        -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!--
+            spring-boot-starter-validation:
+            Enables @Valid, @NotBlank, @Size etc. on DTOs.
+            Without this, @Valid annotations are silently ignored.
+        -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+
+        <!--
+            spring-boot-devtools:
+            Auto-restarts the server on code changes during development.
+            scope=runtime means it's only active when running locally,
+            not included in the production JAR.
+        -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
+
+        <!--
+            spring-boot-starter-test:
+            JUnit 5, Mockito, AssertJ — for unit and integration tests.
+            scope=test means it's excluded from the final production build.
+        -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!--
+                spring-boot-maven-plugin:
+                Packages the app as a self-contained "fat JAR" that includes
+                all dependencies and an embedded Tomcat server.
+                Run with: java -jar target/devassist-backend-0.0.1-SNAPSHOT.jar
+            -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
+
